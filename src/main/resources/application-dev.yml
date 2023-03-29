@@ -1,0 +1,106 @@
+server:
+  port: 8081 #端口
+  servlet:
+    context-path: /cd
+  tomcat.uri-encoding: UTF-8
+
+spring:
+  config:
+    activate:
+      on-profile: dev
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:oracle:thin:@192.168.13.68:1521/pdb2
+    username: statistical
+    password: statistical
+    hikari:
+      driver-class-name: oracle.jdbc.OracleDriver
+      ##池中维护的最小空闲连接数
+      minimum-idle: 5
+      ##池中最大连接数，包括闲置和使用中的连接
+      maximum-pool-size: 15
+      ##自动提交从池中返回的连接
+      auto-commit: true
+      ##连接允许在池中闲置的最长时间
+      idle-timeout: 30000
+      ##连接池的用户定义名称，主要出现在日志记录和JMX管理控制台中以识别池和池配置
+      pool-name: DatebookHikariCP
+      ##池中连接最长生命周期
+      max-lifetime: 18000000
+      ##等待来自池的连接的最大毫秒数
+      connection-timeout: 30000
+      ##验证该连接是否是有效的查询语句
+      connection-test-query: select 1 from dual
+  kafka:
+    bootstrap-servers: 192.168.13.68:9092
+    producer: # producer 生产者
+      retries: 0 # 重试次数
+      acks: 1 # 应答级别:多少个分区副本备份完成时向生产者发送ack确认(可选0、1、all/-1)
+      batch-size: 16384 # 批量大小
+      buffer-memory: 33554432 # 生产端缓冲区大小
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+# ====================MybatisPlus====================
+mybatis-plus:
+  #默认就在resources/mapper下，如果要更改目录在这个配置下更改
+  mapper-locations: classpath:mapper/**/*Mapper.xml
+  #实体扫描，多个package用逗号或者分号分隔
+  typeAliasesPackage: com.data.entity
+  global-config:
+    #驼峰下划线转换
+    db-column-underline: true
+  configuration:
+    # 是否开启自动驼峰命名规则映射:从数据库列名到Java属性驼峰命名的类似映射
+    map-underscore-to-camel-case: true
+    # 如果查询结果中包含空值的列，则 MyBatis 在映射的时候，不会映射这个字段
+    call-setters-on-nulls: true
+    #配置JdbcTypeForNull
+    jdbc-type-for-null: 'null'
+    cache-enabled: false
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#待改造目录（通过上传报文接口将报文放入待改造目录）
+msgDir: D:\msgDir\test\
+#改造报文备份目录（将原始报文备份到备份目录中）
+msgBakPath: D:\TRANSFORM_FILE_BAK\
+#改造报文时出错目录
+msgErrorDir: D:\msgErrorDir\
+#待发送目录
+msgSendPath: D:\TRANSFORM_FILE_SEND\
+#待发送备份目录
+msgSendBakPath: D:\TRANSFORM_FILE_SEND\
+#导入客户端回执目录下的回执报文
+msgResultDir: F:\ps\Receipt1\
+#报文回执待解析目录
+msgReceiptAnalysisPath: D:\xy\cd\RECEIPT_FILE_ANALYSIS\
+#报文回执备份目录
+msgReceiptBakPath: D:\RECEIPT_FILE_BAK\
+#报文回执未申报目录（该条报文还未申报时迁移到该目录）
+msgReceiptNoDeclarePath: D:\RECEIPT_NO_DECLARE_FILE\
+#处理回执时出错目录
+msgResultErrorDir: D:\msgResultErrorDir\
+
+#单一窗口导入客户端的回执下发目录
+singleWindowReceiptDir: F:\ps\InBoxAll\
+
+#运抵理货回执目录
+msgResultDir2: F:\ps\Receipt2\
+
+SM4Key: 3A8494AA66C508E9EE8C147E7693EAD1
+
+
+#待回执解析目录
+
+#空运 电子口岸回执
+kToDzPath: D:\SingleWindows\singlegb.Sevices\MSMQHZSendConfig\空运01\WaitSend\
+#空运 海关回执
+kToHaiguanPath: D:\SingleWindows\singlegb.Sevices\MSMQHZSendConfig\空运\WaitSend\
+#水运 海关回执
+sToHaiguanPath: D:\SingleWindows\singlegb.Sevices\MSMQHZSendConfig\水运2021\WaitSend\
+#水运 电子口岸回执
+sToDzPath: D:\SingleWindows\singlegb.Sevices\MSMQHZSendConfig\水运\WaitSend\

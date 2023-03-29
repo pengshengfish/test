@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.mapper.BaseResultXmlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.data.entity.BaseResultXml">
+        <id column="ID" property="id" />
+        <result column="MESSAGE_ID" property="messageId" />
+        <result column="MESSAGE_TYPE" property="messageType" />
+        <result column="MSG_PATH" property="msgPath" />
+        <result column="FUNCTION_CODE" property="functionCode" />
+        <result column="SEND_TIME" property="sendTime" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="DELETE_FLAG" property="deleteFlag" />
+        <result column="XML_TYPE" property="xmlType" />
+        <result column="COP_CODE" property="copCode" />
+        <result column="GROUP_ID" property="groupId" />
+    </resultMap>
+
+    <select id="listResultBwByOrgCode" resultType="com.data.entity.BaseResultXml" parameterType="String">
+        select *
+        from mt_base_result_xml
+        where COP_CODE = #{orgCode}
+          and rownum &lt;= 20
+          and DELETE_FLAG = 0
+        order by send_time asc
+    </select>
+</mapper>

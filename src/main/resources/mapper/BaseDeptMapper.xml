@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.mapper.BaseDeptMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.data.entity.BaseDept">
+        <id column="ID" property="id" />
+        <result column="DEPT_NO" property="deptNo" />
+        <result column="MESSAGE_TYPE" property="messageType" />
+        <result column="TRADE_CODE" property="tradeCode" />
+        <result column="TRADE_NAME" property="tradeName" />
+        <result column="PLAT_ID" property="platId" />
+        <result column="GB_ID" property="gbId" />
+        <result column="CONTR_DATE" property="contrDate" />
+        <result column="ACCESS_CODE" property="accessCode" />
+        <result column="CREATE_USER" property="createUser" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="UPDATE_DATE" property="updateDate" />
+        <result column="UPDATE_USER" property="updateUser" />
+    </resultMap>
+
+</mapper>

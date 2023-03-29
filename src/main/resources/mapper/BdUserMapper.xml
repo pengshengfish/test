@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.mapper.BdUserMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.data.entity.BdUser">
+        <id column="ID" property="id" />
+        <result column="ACCOUNT" property="account" />
+        <result column="PASSWORD" property="password" />
+        <result column="COP_NAME" property="copName" />
+        <result column="COP_CODE_SCC" property="copCodeScc" />
+        <result column="BROKER" property="broker" />
+        <result column="TC_SD" property="tcSd" />
+        <result column="TC_RX" property="tcRx" />
+        <result column="CREATE_TIME" property="createTime" />
+        <result column="CREATE_USER" property="createUser" />
+        <result column="P_LEVEL" property="pLevel" />
+        <result column="CONTACT_USER" property="contactUser" />
+        <result column="CONTACT_PHONE" property="contactPhone" />
+        <result column="BUS_LICENSE_PATH" property="busLicensePath" />
+        <result column="CLIENT_ACCOUNT" property="clientAccount" />
+        <result column="CLIENT_PASSWORD" property="clientPassword" />
+    </resultMap>
+    <select id="listByDeptNo" resultType="com.data.entity.BdUser" parameterType="string">
+        select t.id,
+               t.account,
+               t.password,
+               t.cop_name,
+               t.cop_code_scc,
+               t.broker,
+               t.tc_sd,
+               t.tc_rx,
+               t.create_time,
+               t.create_user,
+               t.p_level,
+               t.contact_user,
+               t.contact_phone,
+               t.bus_license_path,
+               t.client_account,
+               t.client_password
+        from BD_USER t
+        where substr(cop_code_scc, 9, 9) = #{deptNo}
+    </select>
+</mapper>

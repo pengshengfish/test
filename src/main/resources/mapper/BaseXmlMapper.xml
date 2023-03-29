@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.data.mapper.BaseXmlMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.data.entity.BaseXml">
+        <id column="ID" property="id" />
+        <result column="MESSAGE_ID" property="messageId" />
+        <result column="MESSAGE_TYPE" property="messageType" />
+        <result column="MSG_PATH" property="msgPath" />
+        <result column="CREATE_DATE" property="createDate" />
+        <result column="COP_CODE" property="copCode" />
+        <result column="GB_ID" property="gbId" />
+        <result column="FUNCTION_CODE" property="functionCode" />
+        <result column="SEND_TIME" property="sendTime" />
+        <result column="USER_TYPE" property="userType"/>
+        <result column="FLAG" property="flag"/>
+        <result column="ACCESS_CODE" property="accessCode" />
+    </resultMap>
+
+</mapper>
